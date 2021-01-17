@@ -660,9 +660,16 @@ if (!Length) {
 	  await Welfarevideo();//福利视频
       await reportAss();//助力任务
 	  }
+	  
+	 if (nowTimes.getHours() >= 20 && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 59)) {
+          if (CASH >= 0.5 && $.coin.result && $.coin.result.nowmoney >= CASH) {
+          await cointowallet();//提现
+	
+         /*
 	  if (nowTimes.getHours() >= 23 && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 59)) {
         if (CASH >= 0.5 && $.coin.result && $.coin.result.nowmoney >= CASH) {
           await cointowallet();//提现
+        */
         }
        
       }
