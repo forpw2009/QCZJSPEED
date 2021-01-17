@@ -957,7 +957,7 @@ if($.addCoin2.returncode==0)
   })
 }
 //助力任务
-function reportAss(timeout = 0) {
+/*function reportAss(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
 		do out = Math.floor(Math.random()*10000000);
@@ -1012,6 +1012,90 @@ if($.cointowallet.returncode==0)
     },timeout)
   })
 }
+*/
+//助力任务
+function reportAss(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+		do out = Math.floor(Math.random()*10000000);
+        while( out < 10000 )				 	  
+	  let body = `_appid=car&taskId=qczjjsb_lb_mg5&userId=${app_userid}&userAssistanceId=${out}&_v=qauto_wxapp1.0&_timestamp=${ts}&_sign=${app_sign}`
+header = GetUserInfoheaderVal.replace(/q=1/g, `q=1","Referer":"https://servicewechat.com/wx8ebc8f3586c7321f/160/page-frame.html","Content-Type":"application/x-www-form-urlencoded;charset=utf-8","Host":"openapi.autohome.com.cn`)
+      let url = {
+        url:`https://openapi.autohome.com.cn/autohome/uc-news-quickappservice/msapi/dealers/reportAss`,
+        headers: JSON.parse(header),
+		body: body,
+      }
+      $.post(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 助力任务🚩: ${data}`);
+          $.reportAss = JSON.parse(data);
+if($.reportAss.data==0)
+  $.message +='【助力任务】：助力成功\n';  
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })	  
+    },timeout)
+  })
+}
+//助力任务2
+function reportAss2(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+		do out = Math.floor(Math.random()*10000000);
+        while( out < 10000 )				 	  
+	  let body = `_appid=car&taskId=qczjjsb_lb_mglh&userId=${app_userid}&userAssistanceId=${out}&_v=qauto_wxapp1.0&_timestamp=${ts}&_sign=${app_sign}`
+header = GetUserInfoheaderVal.replace(/q=1/g, `q=1","Referer":"https://servicewechat.com/wx8ebc8f3586c7321f/160/page-frame.html","Content-Type":"application/x-www-form-urlencoded;charset=utf-8","Host":"openapi.autohome.com.cn`)
+      let url = {
+        url:`https://openapi.autohome.com.cn/autohome/uc-news-quickappservice/msapi/dealers/reportAss`,
+        headers: JSON.parse(header),
+		body: body,
+      }
+      $.post(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 助力任务2🚩: ${data}`);
+          $.reportAss2 = JSON.parse(data);
+if($.reportAss2.data==0)
+  $.message +='【助力任务2】：助力成功\n';  
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })	  
+    },timeout)
+  })
+}
+//提现
+function cointowallet(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+	  let body =`auth=${pcpopclub}&userid=${app_userid}&cashtype=3&coin_amount=${CASH*10000}&validatecode=&faceno=&a=18&pm=1&v=1.7.0&device_id=${app_deviceid}&sessionid=${sessionid}&_timestamp=${tts}`
+      let url = {
+        url: `https://mobile.app.autohome.com.cn/fasthome/coin/cointowallet`,
+        headers: JSON.parse(GetUserInfoheaderVal),
+		body: body,
+      }
+      $.post(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 提现🚩: ${data}`);
+          $.cointowallet = JSON.parse(data);
+if($.cointowallet.returncode==0)
+  $.message += `【现金提现】:成功提现${CASH}元\n`;
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+
 
 
 // prettier-ignore
