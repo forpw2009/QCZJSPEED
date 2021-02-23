@@ -6,7 +6,7 @@ name: 汽车之家极速版
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/8 23,0,1 * * *'
+     - cron: '*/8 * * * *'
   watch:
     types: started
 
